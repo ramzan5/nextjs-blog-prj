@@ -13,8 +13,9 @@ async function handler(req, res){
             email,name,message
         }
         let client 
+        const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.yjolsyd.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`
         try{
-             client = await MongoClient.connect('mongodb+srv://<userName>:<userpassword></userpassword>@cluster0.yjolsyd.mongodb.net/my-sites?retryWrites=true&w=majority')
+             client = await MongoClient.connect(connectionString)
         }catch(error){
             res.status(500).json({message:'Could Not Connect to DB'})
             return
